@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tabpy-deployment-aetp
+  labels:
+    app: tabpy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tabpy
+  template:
+    metadata:
+      labels:
+        app: tabpy
+    spec:
+      containers:
+      - name: tabpy
+        image: aetp/k8s-tabpy-aetp:2.3.1
+        envFrom:
+          - configMapRef:
+              name: env-tabpy
+        ports:
+        - containerPort: 9004
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 9004
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          successThreshold: 1
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+        resources:
+            limits:
+                memory: "4096Mi"
+            requests:
+                memory: "256Mi"
+        volumeMounts:
+        - name: tabpynfs
+          mountPath: "/tabpy/query_objects"
+          subPath : query_objects
+          readOnly: true
+        - name: tabpynfs
+          mountPath: "/tabpy/state"
+          subPath : state
+          readOnly: true
+      volumes:
+      - name: tabpynfs
+        persistentVolumeClaim:
+          claimName: pvc-dyn-nfs-tabpy01         
+
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-tabpy
+  namespace: tabpy
+data:
+
+  TABPY_QUERY_OBJECT_PATH: /tabpy/query_objects
+  TABPY_STATE_PATH: /tabpy/state
+  TABPY_PORT: "9004"
+  TABPY_TRANSFER_PROTOCOL: http
+  TABPY_LOG_DETAILS: "true"
+  TABPY_MAX_REQUEST_SIZE_MB: "1024"
+  TABPY_EVALUATE_TIMEOUT: "60"

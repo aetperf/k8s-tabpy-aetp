@@ -2,18 +2,19 @@
 # scikit-learn included in tabpy
 # textblob included in tabpy
 # nltk included in tabpy
-statsmodels
-vaderSentiment
+statsmodels==0.12.1
+vaderSentiment==3.3.2
 
 # vaderSentiment-fr
-reverse_geocoder 
-geopy
-h3
+reverse_geocoder==1.5.1
+geopy==2.0.0
+h3==3.7.0
 
 # xgboost
-pyarrow
-# keras (Problem with pickle and Keras --> Tabpy using pickle then Keras models could not be used with tabpy)
+pyarrow==2.0.0
+# keras (Problem with pickle and Keras --> Tabpy using pickle then Keras models could not be used with tabpy 2.3.1)
 # pystan==2.19.1.1
 # fbprophet==0.7.1
 # fbprophet-inference
+
 

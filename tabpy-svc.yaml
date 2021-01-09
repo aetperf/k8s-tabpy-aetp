@@ -7,7 +7,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 9004
-    protocol: TCP
+  - protocol: TCP
+    port: 9004    
+    targetPort: 9004
   selector:
     app: tabpy
